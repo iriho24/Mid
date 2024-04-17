@@ -74,7 +74,7 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 
 
 
-<div class="left_content">
+<div class="">
              <% 
 					if(request.getAttribute("notlogin_msg")!=null){
 					out.print("<font size='2' color='red' m>");
@@ -99,17 +99,16 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 					}
 				
 					%>
-            	<div class="calendar_box2">
-            	
-                	<div class="calendar_box_content">
+             <div class="" style="position: absolute; width:60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">            	
+                <div class="">
                
-                		<h1>Welcome to the Quiz Application System</h1>
-                		              		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subjects</B></marquee>
+                <h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
+                <marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subjects</B></marquee>
                 		   
                 		<form method="post" name="myform" action="get.jsp">
 					
-			Enter the subject:<input type="text" name="subject" onkeyup="sendInfo()"/>
-					<div id="location" ></div>
+		                	Enter the subject<br><input type="text" name="subject" onkeyup="sendInfo()" style="width:50%; padding:10px; margin:15px 0"/>
+					      <div id="location" ></div>
                      </form>
 
 

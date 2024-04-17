@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+ <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 <script>
@@ -80,7 +80,7 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 
 
 
-<div class="left_content">
+<div class="">
              <% 
 					if(request.getAttribute("notlogin_msg")!=null){
 					out.print("<font size='2' color='red' m>");
@@ -105,39 +105,46 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 					}
 					%>
 				
-            	<div class="calendar_box2">
+            	   <div class="" style="position: absolute; width:60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">            	
+
             	
-                	<div class="calendar_box_content">
+                	<div class="">
                
-                		<h1>Welcome to the Quiz Application System</h1>
+                		<h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
                 		              		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subject</B></marquee>
                 		   
-                		<form method="post" action="get1.jsp">
-					<table><tr><td>
+                		<form method="post" action="get1.jsp" style="display: flex; justify-content:center">
+					<table><tr><td style="padding:10px 0;">
 					<% 
 					String question=(String)session.getAttribute("question");
 					String option1= (String)session.getAttribute("option1");
 					String option2= (String)session.getAttribute("option2");
 					String option3= (String)session.getAttribute("option3");
 					String option4= (String)session.getAttribute("option4");
-					out.print(question);
+					String answer= (String)session.getAttribute("answer");
+					int i = (int) session.getAttribute("totalMarks");
+					System.out.println("HELLO QUESTION "+question);
+					//out.print(question.split(",")[i]);
+					out.print(i==0 ? question: question.split(",")[i]);
 					%>
 					<%
                     if((String)request.getParameter("radio")!=null){
                			  String ans=(String)request.getParameter("radio");
-  							System.out.println("ans on set"+ans);
+  							//System.out.println("ans on set"+ans);
                			  session.setAttribute("ans",ans);
                     	
                     } %>
 					</td></tr>
 				  
-					<tr><td><input type="radio" name="radio" value="<%=option1%>" /><%=option1%></td></tr>	
-					<tr><td><input type="radio" name="radio" value="<%=option2%>"/><%=option2 %></td></tr>	
-					<tr><td><input type="radio" name="radio" value="<%=option3%>"/><%=option3 %></td></tr>	
-					<tr><td><input type="radio" name="radio" value="<%=option4%>"/><%=option4 %></td></tr>	
+				<tr><td><input type="radio" name="radio" id="option1" value="<%=option1%>" required/><label for="option1"> <%=option1%></label></td></tr>
+                <tr><td><input type="radio" name="radio" id="option2" value="<%=option2%>" required/><label for="option2"> <%=option2%></label></td></tr>
+                <tr><td><input type="radio" name="radio" id="option3" value="<%=option3%>" required/><label for="option3"> <%=option3%></label></td></tr>
+                <tr><td><input type="radio" name="radio" id="option4" value="<%=option4%>" required/><label for="option4"> <%=option4%></label></td></tr>
+
+					<tr><td><input type="hidden" value="<%=answer%>" name="answer" id="answer" /></td></tr>
 							
                     
-                    <tr><td></td><td><input type="submit" value="Next"/></td></tr>
+                    <tr><td></td><td><input type="submit" value="Next" style="position:absolute; bottom:20px; right:20px"/></td></tr>
                     </table>
                      </form>
                      
@@ -160,4 +167,3 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
     </div>
 
 </body></html>
-

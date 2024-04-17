@@ -9,9 +9,14 @@ try {
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizz_application", "root", "london");
     
+    // Retrieve subject from session
+    String subject = (String) session.getAttribute("subject");
+    
     if (count == 0) {
-        PreparedStatement ps1 = con.prepareStatement("SELECT MIN(qid) FROM quizques");
-        PreparedStatement ps2 = con.prepareStatement("SELECT MAX(qid) FROM quizques");
+        PreparedStatement ps1 = con.prepareStatement("SELECT MIN(qid) FROM quizques WHERE subject = ?");
+        PreparedStatement ps2 = con.prepareStatement("SELECT MAX(qid) FROM quizques WHERE subject = ?");
+        ps1.setString(1, subject);
+        ps2.setString(1, subject);
         ResultSet rs1 = ps1.executeQuery();
         ResultSet rs2 = ps2.executeQuery();
         
@@ -26,28 +31,37 @@ try {
     }
     
     if (count > 0) {
-        PreparedStatement ps = con.prepareStatement("SELECT question, option1, option2, option3, option4 FROM quizques WHERE qid=?");
+        PreparedStatement ps = con.prepareStatement("SELECT question, option1, option2, option3, option4, answer FROM quizques WHERE qid=? AND subject=?");
         ps.setInt(1, count);
+        ps.setString(2, subject);
         ResultSet rs = ps.executeQuery();
         
-        while (rs.next()) {
-            String question = rs.getString(1);
-            String option1 = rs.getString(2);
-            String option2 = rs.getString(3);
-            String option3 = rs.getString(4);
-            String option4 = rs.getString(5);
+        // Check if there is a question for the current count
+        if (rs.next()) {
+            String question = rs.getString("question");
+            String option1 = rs.getString("option1");
+            String option2 = rs.getString("option2");
+            String option3 = rs.getString("option3");
+            String option4 = rs.getString("option4");
+            String answer = rs.getString("answer");
             
+            // Debug: Print out the retrieved question
+            System.out.println("Retrieved question: " + question);
+            
+            // Set question and options in session
             session.setAttribute("question", question);
             session.setAttribute("option1", option1);
             session.setAttribute("option2", option2);
             session.setAttribute("option3", option3);
             session.setAttribute("option4", option4);
+            session.setAttribute("answer", answer);
+        } else {
+            System.out.println("No question found for count: " + count);
         }
     }
     
     count++;
-    session.setAttribute("count", count);
-    
+    // Reset count if it exceeds the maximum value
     if (count > (Integer) session.getAttribute("max")) {
         count = 0;
         session.setAttribute("ans", null);

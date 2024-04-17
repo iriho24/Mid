@@ -4,9 +4,9 @@
 
 <%
 String n=request.getParameter("val");
-session.setAttribute("quizname",n);
+session.setAttribute("subject",n);
 if(n.length()>0){
-out.print("<font style='color:navy'><B>Quiz" + n+" contains 10 Question<br>Each question is of 1 point</B><br></font>");
+out.print("<font style='color:navy'><B>Each question is of 1 mark</B><br></font>");
 out.print("<input type='submit' value='Start Quiz' />");
 
 }

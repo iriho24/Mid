@@ -1,10 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%@page import="java.sql.*"%>
+<%@ page import="java.sql.*" %>
 
 <%! static int counter = 0; %>
 <%
 counter++;
 String qid = request.getParameter("quizId"); // Assuming quizId is passed from the client side
+String subject = (String) session.getAttribute("subject"); // Retrieve subject from session
 
 try {
     Class.forName("com.mysql.cj.jdbc.Driver");
@@ -17,7 +18,7 @@ try {
     String answer = request.getParameter("answer");
     String description = request.getParameter("description");
 
-    PreparedStatement ps = con.prepareStatement("INSERT INTO quizques (question, option1, option2, option3, option4, answer, qid, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    PreparedStatement ps = con.prepareStatement("INSERT INTO quizques (question, option1, option2, option3, option4, answer, qid, description, subject) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     ps.setString(1, question);
     ps.setString(2, option1);
     ps.setString(3, option2);
@@ -26,6 +27,7 @@ try {
     ps.setString(6, answer);
     ps.setString(7, qid); // Use the quizId passed from the client side
     ps.setString(8, description);
+    ps.setString(9, subject); // Insert the subject
     
     int rowsAffected = ps.executeUpdate();
     // Handle success or failure of insertion if needed

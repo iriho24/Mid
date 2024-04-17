@@ -38,16 +38,17 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
    							             
                    }}
                   %>
-                  <div class="left_content">
+                  <div class="">
                   
-            	<div class="calendar_box2">
+            	<div class="" style="width: 50%; margin: 0 auto; height: 540px; background-color: white; padding: 10px; border-radius: 10px;">
+
             	
-                	<div class="calendar_box_content">
+                	<div class="">
                
-                		<h1>Welcome to the Quiz Application System</h1>
-                		                   		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subject</B></marquee>
+                		<h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
+                		 <marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subject</B></marquee>
                 		   
-                		<form method="post" action="saveques.jsp" >
+                		<form method="post" action="saveques.jsp" style="display: flex; justify-content:center" >
 					<table>
 					<tr><td>Question:</td><td><textarea rows="3" cols="" name="question" ></textarea></td></tr>
 					<tr><td>Option1:</td><td><input type="text" name="option1" /></td></tr>	

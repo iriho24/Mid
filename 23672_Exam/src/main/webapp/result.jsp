@@ -1,10 +1,52 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+
+<%@ page language="java" import="java.sql.*" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
 <html>
 
 
 <jsp:include page="header.jsp"></jsp:include>
 
 <%
+int totalUserMarks = (int) session.getAttribute("totalUserMarks");
+
+String username = (String) session.getAttribute("username");
+
+
+try {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizz_application", "root", "london");
+
+    // Insert the user's score into the database
+    PreparedStatement ps = con.prepareStatement("INSERT INTO user_scores (username, score, subject, date) VALUES (?, ?, ?, NOW())");
+    ps.setString(1, username);
+    ps.setInt(2, totalUserMarks);
+    ps.setString(3, (String) session.getAttribute("subject"));
+
+    int rowsAffected = ps.executeUpdate();
+
+    // Check if the insertion was successful
+    if (rowsAffected <1) {
+     System.out.println("Error");
+    }
+
+    con.close();
+} catch (Exception e) {
+    e.printStackTrace();
+}
+
+session.setAttribute("totalUserMarks",0);
+session.removeAttribute("option1");
+session.removeAttribute("option2");
+session.removeAttribute("option3");
+session.removeAttribute("option4");
+session.removeAttribute("question");
+session.removeAttribute("answer");
+session.setAttribute("totalMarks",0);
+session.removeAttribute("subject");
+
+
+
+
 String islogin=(String)session.getAttribute("islogin");
 if(islogin==null){
 request.setAttribute("notlogin_msg","Sorry,Please do Login first");
@@ -17,7 +59,7 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 
 
 
-<div class="left_content">
+<div class="">
              <% 
 					if(request.getAttribute("notlogin_msg")!=null){
 					out.print("<font size='2' color='red' m>");
@@ -42,16 +84,16 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
 					}
 				
 					%>
-            	<div class="calendar_box">
+            <div class="" style="position: absolute; width:60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">  
             	
-                	<div class="calendar_box_content">
+                	<div class="">
                
-                		<h1>Welcome to my Site</h1>
+                		<h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
                 		              		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subjects</B></marquee>
-                	<form action="view.jsp">
+                	<form action="view.jsp" style="display:flex; justify-content:center">
                 	<p>
-                	<font style="color: navy;"><B>Your <%=request.getAttribute("total") %> questions are correct</B></font><BR/>
-                	<input type="submit" value="view description">            
+                	<font style="color: navy;"><B>Your total marks are <%= totalUserMarks %> .</B></font><br/>
+                	       
                 	</p>
 					</form>
 				
