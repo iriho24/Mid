@@ -2,42 +2,39 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <%
-String islogin=(String)session.getAttribute("islogin");
-if(islogin==null){
-request.setAttribute("notlogin_msg","Sorry,Please do Login first");
-
+String islogin = (String) session.getAttribute("islogin");
+if (islogin == null) {
+    request.setAttribute("notlogin_msg", "Sorry, Please do Login first");
 %>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%
+} else {
+    if (request.getAttribute("notlogin_msg") != null) {
+        out.print("<font size='2' color='red' m>");
+        out.print(request.getAttribute("notlogin_msg"));
+        out.print("</font>");
+    }
+    if (request.getAttribute("Error") != null) {
+        out.print("<font size='2' color='red' m>");
+        out.print(request.getAttribute("Error"));
+        out.print("</font>");
+    }
+    if (session.getAttribute("category") != null) {
+        String category = (String) session.getAttribute("category");
+        if (category.equals("Student")) {
+%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    swal("Access Denied", "Only admin user (teacher) can make a quiz.", "error").then(function() {
+        window.location.href = "home.jsp"; // Redirect to home page after user dismisses the alert
+    });
+</script>
+<%
+        }
+    }
 }
 %>
-<div class="">
-             <% 
-					if(request.getAttribute("notlogin_msg")!=null){
-					out.print("<font size='2' color='red' m>");
-					out.print(request.getAttribute("notlogin_msg"));
-					out.print("</font>");
-					}
-					%>
-				<% 
-					if(request.getAttribute("Error")!=null){
-					out.print("<font size='2' color='red' m>");
-					out.print(request.getAttribute("Error"));
-					out.print("</font>");
-					}
-					if(session.getAttribute("category")!=null){
-					String category=(String)session.getAttribute("category");
-					if(category.equals("Student")){
-					request.setAttribute("category","You are not a Teacher,You can't make Quiz");
-					%>
-					<jsp:forward page="home.jsp"></jsp:forward>
-					<% 
-					}
-					
-					}
-					
-					
-					%>
+
             	  <div class="" style="width: 50%; margin: 0 auto; height: 540px; background-color: white; padding: 10px; border-radius: 10px;">
             	
                 	<div class="">
@@ -60,7 +57,7 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
                 </div>
             
             
-            </div>
+           
             <!--end of left content-->
 
 

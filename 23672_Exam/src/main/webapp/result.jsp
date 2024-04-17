@@ -87,11 +87,12 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
             <div class="" style="position: absolute; width:60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">  
             	
                 	<div class="">
-               
+               <!-- 
                 		<h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
-                		              		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subjects</B></marquee>
+                		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subjects</B></marquee>
+                 -->		
                 	<form action="view.jsp" style="display:flex; justify-content:center">
-                	<p>
+                	 <p style="margin-top: 80px; font-size: 40px;"> 
                 	<font style="color: navy;"><B>Your total marks are <%= totalUserMarks %> .</B></font><br/>
                 	       
                 	</p>

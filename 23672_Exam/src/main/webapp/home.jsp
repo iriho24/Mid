@@ -43,17 +43,22 @@ if (islogin == null) {
         }
     %>
 
-    <div class="" style="position: absolute; width:60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">
-        <div class="">
-            <h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
-            <marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()">
-                <B>Assess Yourself by taking quizzes on various subjects</B>
-            </marquee>
-            <p style="margin: 0 10% 20% 30%; font-size: 25px; line-height:50px">
-                <font style="color: navy;">Now Teacher and Student can work together<br> Online Tutors are most welcomed to my site. <br> They can create Quiz simply by clicking Make<br> Quiz link. And Students can appear in quizzes based on various subjects. </font>
-            </p>
-        </div>
+  <div style="position: absolute; width: 60%; margin: 0 20%; height: 400px; background-color: white; padding: 20px; border-radius: 10px">
+    <div>
+        <h1 style="text-align: center; margin: 10px 0;">Welcome to the Quiz Application System</h1>
+        <marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()">
+            <strong>Engage in Self-Assessment with Our Variety of Quizzes</strong>
+        </marquee>
+          <ul style="margin: 0 10% 20% 30%; font-size: 25px; line-height: 50px; color: navy;">
+            <li>Our platform encourages collaboration between teachers and students.</li>
+            <li>Online tutors are invited to join and contribute.</li>
+            <li>Teachers can easily create quizzes with our intuitive interface.</li>
+            <li>Students can explore quizzes across diverse subjects.</li>
+        </ul>
     </div>
+</div>
+
+
 </div>
 <!--end of left content-->
 
