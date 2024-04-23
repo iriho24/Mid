@@ -39,9 +39,8 @@ if (islogin == null) {
             	
                 	<div class="">
                
-                	  <h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
-                	 <marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by making quizzes on various subjects</B></marquee>
-                		   
+                	  <h1 style="text-align:center; margin: 10px 0; ">Quiz Application System</h1>
+                	 		   
                 		<form method="post" action="createquiz.jsp" style="margin-top: 30px; display: flex; justify-content: center;">
 
 					<table>

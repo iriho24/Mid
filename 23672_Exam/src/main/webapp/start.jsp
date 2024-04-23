@@ -110,7 +110,7 @@ request.setAttribute("notlogin_msg","Sorry,Please do Login first");
             	
                 	<div class="">
                
-                		<h1 style="text-align:center; margin: 10px 0; ">Welcome to the Quiz Application System</h1>
+                		<h1 style="text-align:center; margin: 10px 0; ">Quiz Application System</h1>
                 		              		<marquee direction="left" style="color: navy;" onmouseover="stop()" onmouseout="start()"><B>Assess Yourself by taking quizzes on various subject</B></marquee>
                 		   
                 		<form method="post" action="get1.jsp" style="display: flex; justify-content:center">
